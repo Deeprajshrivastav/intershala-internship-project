@@ -1,0 +1,36 @@
+{% extends "books/base.html "%}
+{% load crispy_forms_tags %}
+{% block content %}
+
+        <form method="get"  id="for">
+            <div id="my">
+                 {{ myFilter.form | crispy}} <br>
+            </div>
+      <center>  <button type="submit" class="btn btn-outline-primary" style="margin-top: 1px;" onclick="fun1()" id="btn">Apply Filter</button> </center>
+        </form>
+<br>
+    {% for post in posts %}
+
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2 " style="color:brown; font-weight: bold;"> Genre: {{ post.genre }}</a>
+              <small class="text-muted">{{ post.dat_posted|date:"F d, Y" }}</small>
+            </div>
+              <div class="article-metadata">
+                  <p class="article-content" style="color:purple; margin-bottom: 0px; font-size:20px; color: #09147d;" >{{ post.title }} ({{ post.language }})</p>
+                  <small class="text-muted" style="margin-top: 0px;"> by {{ post.author }}</small>
+                  <p>
+                      {{ post.info }}
+                  </p>
+              </div>
+          </div>
+            <script>
+            	function fun1 (argument) {
+            		id_genre.value = id_genre.value.toLowerCase();
+            	}
+            </script>
+        </article>
+    {% endfor %}
+
+{% endblock content  %}
